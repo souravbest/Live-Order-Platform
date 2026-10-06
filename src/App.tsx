@@ -44,7 +44,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename="/Live-Order-Platform">
         <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => queryClient.clear()}>
           <Suspense fallback={
             <div style={{ padding: '2rem', color: '#94a3b8', fontFamily: 'inherit' }}>
