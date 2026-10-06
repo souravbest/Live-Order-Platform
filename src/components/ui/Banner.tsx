@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 interface BannerProps {
   type: 'error' | 'warning' | 'info' | 'success';

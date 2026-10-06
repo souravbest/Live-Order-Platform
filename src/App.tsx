@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -14,7 +14,7 @@ const queryClient = new QueryClient({
   },
 });
 
-function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
+function ErrorFallback({ error, resetErrorBoundary }: { error: unknown; resetErrorBoundary: () => void }) {
   return (
     <div role="alert" style={{
       padding: '2rem', color: '#fca5a5', fontFamily: 'inherit',
@@ -23,7 +23,7 @@ function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetError
     }}>
       <h2>Something went wrong</h2>
       <pre style={{ fontSize: '0.85rem', color: '#f87171', whiteSpace: 'pre-wrap' }}>
-        {error.message}
+        {error instanceof Error ? error.message : 'An unexpected error occurred'}
       </pre>
       <button
         onClick={resetErrorBoundary}
